@@ -90,9 +90,3 @@ While January has the highest absolute revenue ($1.95M) and net profit ($694.5K)
 3. **Target Labor and Payroll efficiency first.** Because these two categories represent the large majority of COGS and Opex respectively, even a small percentage improvement here outweighs optimization efforts across all remaining cost categories combined.
 4. **Monitor COGS-to-Revenue elasticity in peak months.** The overshoot in COGS MoM during revenue spikes (e.g., May) is worth a root-cause review before the next high-volume period, to catch inefficiency before it recurs.
 
----
-
-## 🛠️ Tools Used
-- **Power BI** — data modeling (star schema), DAX measures, and dashboard design
-- **DAX** — Month-over-Month calculations, Gross/EBIT/Net Profit Margin measures, Pareto (cumulative %) logic for COGS/Opex breakdowns
-
