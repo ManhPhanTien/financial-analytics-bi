@@ -37,30 +37,65 @@ The work followed three steps:
   2. Profit depends heavily on sales. In the weakest month, September, the net margin was only 8.2%, compared with 35.6% in January.
   3. Sportswear earns 63% of group profit from 39% of revenue. Nutrition & Food Supplements lost \$0.71M.
   4. People costs (Labor + Payroll) are half of all costs, and most costs barely go down when revenue falls.
-
+ 
 ## 2. Design Thinking Process
 
-The canvas was filled in before the dashboard was built. It only shows what was known at that time: the users, their needs, the structure of the raw data, the questions and ideas to test, and the planned pages and metrics. The results come later, in sections 4 and 5.
+The canvas was filled in before the dashboard was built. It only shows what was known at that time: the users, their needs, the structure of the raw data, the questions to answer, and the planned pages and metrics. The results come later, in sections 4 and 5.
 
 ### Stage 1: Empathize
 
-- **5W1H:** 
-![5W1H](images/5w1h.png)
+**5W1H**
 
-- **Empathy Map:** 
-![Empathy Map](images/empathy_map.png)
+| Question | Answer |
+|---|---|
+| **Who** will use the dashboard? | • CFO / Finance Director and CEO<br>• Heads of Sportswear, Sports equipment and Nutrition & Food Supplements |
+| **What** problems does it solve? | • Where each revenue dollar goes (COGS, Opex, interest & tax)<br>• Which business line makes or loses money, and in which month<br>• Which cost lines drive the margin, and whether they move with sales |
+| **When / Where** will they use it? | • **When:** the monthly business review after month-end close, the quarterly review and the 2024 budget cycle<br>• **Where:** Power BI Service, on a laptop or the meeting-room screen |
+| **Why** do they need it? | To have evidence for setting the 2024 budget and cost targets, and for deciding the future of each business line |
+| **How** do they reach their goals? | Top-down, one question per page:<br>1. **Overview – Are we on track?** KPIs vs last month, P&L waterfall, monthly revenue vs net margin<br>2. **Line – Where is the problem?** Revenue, profit and margins by business line; click a line to see its months and cost mix<br>3. **Cost – Why?** The few cost lines behind most of the spending, and whether COGS and Opex follow revenue |
+
+**Empathy Map** (persona: CFO / Finance Director, before the dashboard exists)
+
+| Thinking & feeling | Seeing | Saying & doing |
+|---|---|---|
+| • Is our profit sustainable, or just a good total?<br>• Are all three business lines making enough money?<br>• Under pressure to defend the 2024 budget with evidence | • A long P&L export: 580 rows, amounts stored as text, costs in parentheses<br>• Monthly totals, but no split by business line or by cost line<br>• No GP, EBIT or NP margin, and no month-over-month view in one place<br>• 15 sub-accounts, with no sense of which ones matter most | **Says:**<br>• How much did we really make after all costs?<br>• Which business line deserves more budget next year?<br>• Which costs can we cut without hurting sales?<br>**Does:**<br>• Asks FP&A for new Excel reports every month<br>• Compares months and cost lines by hand |
+
+| Pains | Gains |
+|---|---|
+| • Answers arrive days after the question<br>• No profit view by business line, so a weak line can hide in the total<br>• Does not know which costs are fixed and which change with sales<br>• Not sure the account mapping and the data are clean | • A one-page P&L check in under a minute<br>• See at a glance which business line makes or loses money<br>• A short list of cost lines worth cutting (Pareto)<br>• One set of definitions (GP, EBIT, NP margin) for budget discussions |
 
 ### Stage 2: POV
 
-One main question per page. For each page, the table lists the planned charts and the business questions they answer.
+One main question per page.
 
-![POV](images/pov.png)
+| Page | Planned visuals | Business question it answers |
+|---|---|---|
+| **Overview** | • P&L waterfall: Revenue → COGS → Opex → Interest & tax → Net profit<br>• Revenue (columns) and NP margin (line) by month | Are we profitable, where does revenue go, and which months are weak? |
+| **Line** | • Revenue and net profit by business line, by month<br>• GP / EBIT / NP margin by business line, by month | Which business line makes or loses money, and in which months? |
+| **Cost** | • COGS and Opex Pareto by sub-account<br>• Revenue vs COGS MoM and Revenue vs Opex MoM | Which few cost lines drive most of the spending, and do costs move with revenue? |
 
 ### Stage 3: Ideate
 
 The metrics planned for each page, from the main KPIs (Layer 0) to more detailed breakdowns (Layers 1 and 2).
 
+| Layer | Overview | Line | Cost |
+|---|---|---|---|
+| **Layer 0**<br>Main KPIs | • Revenue<br>• Gross Profit Margin = (Revenue − COGS) / Revenue<br>• EBIT Margin = (Gross profit − Opex) / Revenue<br>• Net Profit Margin = Net profit / Revenue<br>• Net Profit = EBIT − Interest & tax<br>• MoM % = this month / last month − 1 | Same KPIs for each business line:<br>• Revenue<br>• Net Profit<br>• GP / EBIT / NP Margin | • Total COGS<br>• Total Opex<br>• Revenue, COGS and Opex MoM %<br>• Pareto % = running total of cost lines (largest first) / total |
+| **Layer 1**<br>Split by one dimension | • P&L by Group (waterfall)<br>• Revenue & NP Margin by Month<br>• Revenue by Business Line<br>• Revenue / COGS / Opex / Net profit MoM by Month | • Revenue & Net Profit by Business Line<br>• GP / EBIT / NP Margin by Business Line<br>• Revenue / COGS / Opex / Net profit MoM by Month | • COGS by Subgroup<br>• Opex by Subgroup<br>• Revenue vs COGS MoM by Month<br>• Revenue vs Opex MoM by Month |
+| **Layer 2**<br>Split by two dimensions | • P&L detail table: Month × P&L line | • COGS / Opex by Subgroup × Business Line (treemaps + buttons)<br>• Month × Business Line detail matrix (Revenue, COGS, Opex, MoM, margins) | • COGS / Opex by Subgroup × Business Line (Business Line slicer)<br>• Subgroup × Month (Time slicer) |
+
+<details>
+<summary>View the original Excel canvas</summary>
+
+![5W1H](images/5w1h.png)
+
+![Empathy Map](images/empathy_map.png)
+
+![POV](images/pov.png)
+
 ![Ideate](images/ideate.png)
+
+</details>
 
 ## 3. Data Modeling
 
@@ -70,93 +105,63 @@ The raw CSV files were loaded into Power BI, cleaned in Power Query and organise
 
 ## 4. Key Insights & Visualizations
 
-All figures are for 2023, in USD, based on the source data as recorded.
+All figures are for 2023, in USD, as recorded in the source data.
 
 ### 4.1. Overview: Are we on track?
 
 ![Overview](images/01_overview.png)
 
-- **Profitable year, but costs are high.**
-  - Revenue of \$17.56M became \$10.85M of gross profit (61.8%), \$5.24M of EBIT (29.9%) and \$4.31M of net profit (24.6%).
-  - Out of every \$1 of revenue, 38¢ goes to COGS, 32¢ to Opex and 5¢ to interest & tax.
-  - For a company that sells physical products, COGS is usually much bigger than Opex. Here they are almost the same size, which suggests a large base of fixed costs such as staff, equipment and rent. The Cost page confirms this.
-- **Profit moves much more than revenue.**
-  - From January (best month) to September (worst month), revenue fell 42% (\$1.95M → \$1.12M), but net profit fell 87% (\$694.5K → \$91.6K). Net margin dropped from 35.6% to 8.2%.
-  - Over the year, costs changed by only about 28¢ for every \$1 change in revenue. So each \$1 of lost sales cut net profit by about 64¢.
-  - This is common for companies with their own staff, equipment and rented space: when sales grow, profit grows fast; when sales slow down, profit falls fast.
-- **Sales follow the seasons, and the second half was weaker.**
-  - Revenue is highest in January, May–June and December, and lowest in April and September. This matches the usual pattern for sports products: New Year fitness goals, the summer season and holiday gifts.
-  - H2 revenue was 13% lower than H1, but H2 net profit was 36% lower, because costs fell only 3%.
-  - The raw data shows that much of the H2 drop came from consulting income (−39%), not product sales (−6.5%). With only one year of data, this seasonal pattern should be checked before using it for the budget.
-- **September: revenue fell, but costs did not.**
-  - Revenue fell 14.1% MoM, while COGS fell only 2.0% and Opex rose 1.2%. As a result, COGS rose to 47.8% of revenue (from 41.9% in August).
-  - Net profit dropped 66% to \$91.6K. Sports equipment caused most of this drop (−\$143K) and had its only loss-making month.
-  - On the MoM chart the lines look close together, so the problem is easy to miss; it only shows in the margin. A chart of COGS as a % of revenue would make it clear.
-- **MoM % can be misleading.**
-  - October's "+222%" net profit only brought profit back to \$295K, close to August's level (\$269K). A big % change on a small base looks more dramatic than it is.
-  - The KPI cards show margin changes as a % of the old margin. The EBIT margin's "+80%" is really a move from 20.5% to 37.0%, or +16.4 pp.
+- **The company is profitable, but its profit depends heavily on keeping sales high.**
+  - Overheads (Opex) are almost as large as the cost of the products (COGS). For a company that sells physical goods this is unusual. It means a large part of the costs (staff, equipment, rent) must be paid every month, whatever the sales.
+  - As a result, a 10% fall in sales would wipe out roughly a quarter of the year's profit.
+- **Weak months are a cost problem, not only a sales problem.**
+  - When sales fell, costs stayed almost the same. From January to September, about 73¢ of every lost sales dollar came straight out of profit; from August to September, almost all of it did.
+  - October's +222% jump in profit was only a bounce back to August's level, not a real recovery.
+- **The second-half slowdown came mostly from consulting, not from sports products.**
+  - Product sales follow the usual sporting-goods calendar (New Year fitness, summer, holiday gifts) and fell only slightly in the second half.
+  - Consulting is only about 16% of revenue but caused more than half of the H2 drop. It depends on winning contracts, so it behaves very differently from product sales.
 
 ### 4.2. Line: Where is the problem?
 
 ![Line](images/02_business_line.png)
 
-- **Sportswear brings in most of the profit.**
-  - It makes 38.8% of revenue but \$2.74M of net profit, 63.4% of the group's profit.
-  - It has the best margins at every level (gross 70.3%, EBIT 45.7%, net 40.2%) and made a profit every month, with a net margin of 29%–51%.
-  - Clothing brands can often charge higher prices. Sportswear also spends less on labour: 20% of revenue, compared with 27% for Sports equipment.
-- **Sports equipment is the biggest line, but less efficient.**
-  - It makes 50.7% of revenue (\$8.91M) and \$2.29M of net profit, a 25.7% net margin.
-  - Its gross margin is 11.6 pp lower than Sportswear's. Compared with Sportswear, it spends more of its revenue on labour (+6.9 pp), on the "Sales" cost line (+2.4 pp) and on shipping (+1.8 pp, mostly from one \$130K entry in January). Materials cost about the same share.
-  - Equipment is large and heavy, and is often sold to gyms, schools and clubs, which adds handling, delivery and sales commission costs. So the way to improve is to work more efficiently and lower selling costs, not to buy materials more cheaply.
-- **Sports equipment is also hit hardest in weak months.**
-  - Its gross margin fell from 54.3% in August to 42.7% in September, with a \$15.1K net loss, its only loss of the year.
-  - Its H2 revenue was 14% lower than H1, but its H2 net profit was 41% lower.
-  - Its labour cost rose 30% for the summer (\$180K → \$234K a month) and only came back down to \$200K. So when sales dropped in the autumn, costs were still higher than at the start of the year.
-- **Nutrition & Food Supplements loses money: −\$0.71M.**
-  - Its gross margin is positive (44.8%), but Opex takes 75.7% of its revenue, compared with 24.6% for Sportswear and 28.4% for Sports equipment. Its EBIT margin is −30.9% and its net margin −38.7%.
-  - Its biggest costs are Payroll (24.3% of revenue), R&D (19.5%) and Marketing (14.4%). It carries two-thirds of the group's R&D cost but brings in only 10.5% of revenue.
-  - It lost money in 11 of 12 months, so this is a long-term problem, not one bad month. It looks like a young supplement brand that spends heavily on R&D and marketing before sales grow. But its sales did not grow: H2 revenue was about the same as H1.
-- **Closing Nutrition would not simply add \$0.71M to profit.**
-  - Its gross profit covers its own payroll, marketing and other Opex, with about \$0.10M left over.
-  - The loss comes from R&D (\$0.36M) and from equipment, rent and interest & tax (\$0.45M). Some of these costs may be shared with the other lines and would not go away.
-  - Depending on which costs would really disappear, closing it would change group profit by between −\$0.10M and +\$0.71M. To break even, it would need 69% more revenue or 41% less Opex.
+- **Sportswear is the safest place to grow.**
+  - Each dollar of Sportswear sales brings about 1.5 times the profit of a dollar of Sports equipment sales. The line made a profit every month, and its profit even rose in September, when the group's profit fell.
+  - Clothing brands can usually charge higher prices, and Sportswear also needs less labour for each dollar it sells.
+- **Sports equipment brings the most sales, but loses margin on labour and selling costs, not on materials.**
+  - Equipment is bulky and often sold to gyms, schools and clubs, which adds handling, delivery and installation work. Materials cost the same share as in Sportswear, so buying more cheaply would not close the gap.
+  - It is also the line hit hardest in slow months. Its summer staff were only partly cut back, and that extra cost was enough to push September into its only loss.
+- **Nutrition & Food Supplements has an overhead problem, not a product problem.**
+  - Its products make money before overheads, but its overheads (mainly payroll, R&D and marketing) are about 1.7 times its gross profit. It loses money almost every month, and its loss takes away about one-seventh of what the other two lines earn.
+  - It looks like a young brand still spending to grow, but its sales did not grow in the second half.
+- **Closing Nutrition would not automatically add \$0.71M to profit.**
+  - Its sales cover its own direct costs. The loss comes from R&D and from equipment, rent and interest costs that may be shared with the other lines and would stay after closing.
+  - Depending on which costs really disappear, closing it would change group profit by anywhere from −\$0.10M to +\$0.71M.
 
 ### 4.3. Cost: Why?
 
 ![Cost](images/03_cost.png)
 
-- **People are the biggest cost.**
-  - Labor is about two-thirds of COGS. Payroll (31.9%), Equipment (23.8%) and Marketing (18.8%) together make up 74.5% of Opex.
-  - Labor + Payroll = \$6.28M, 51% of all costs, while materials are only \$1.07M (6.1% of revenue).
-  - Cutting labour cost by 10% would save about \$0.45M, compared with \$0.11M for materials. So better staff planning matters more than buying more cheaply.
-- **COGS follows staff levels, not sales.**
-  - In most months, COGS hardly changes when revenue changes. In March, revenue fell 16.2% while COGS rose 1.3%; in December, revenue rose 35.4% while COGS rose only 3.4%.
-  - The exception is May (COGS +32.9%), when labour was increased by 24% for the summer (\$345K → \$429K a month). It was still \$380K in August–September.
-  - January (\$1.95M) and December (\$1.73M) reached the same or higher revenue with the normal team, so the extra staff may not have been needed. Seasonal businesses usually hire temporary staff for busy periods.
-- **Opex stays high and keeps rising.**
-  - Opex barely changes with revenue (in February, revenue fell 19.6% while Opex rose 0.8%) and was highest in December (\$536.8K).
-  - Rent rose 48% and equipment 33% during 2023, while H2 revenue fell 13%. Rent and equipment contracts are hard to cancel once signed.
-  - Marketing is the only cost that goes up and down with the season (\$120K in busy months, \$50K–65K in slow months). So the charts cannot show whether marketing creates sales or just follows them.
-- **Data check: the COGS Pareto chart is missing some costs.**
-  - The bars add up to about \$6.45M, but total COGS is \$6.71M. The missing \$0.26M is "Other" COGS, which the Subgroup table puts under Opex.
-  - Because of this, Labor shows as 69.7% of COGS instead of the correct 66.9%.
-  - Two records also look like they have an extra zero: Sports equipment shipping in January (\$130K) and Nutrition consulting in August (\$90K).
+- **Labour, not materials, decides the margin.**
+  - People costs (Labor + Payroll) are about half of all costs, while materials are a small share. Saving 10% on labour is worth about four times as much as saving 10% on materials.
+  - So the biggest savings will come from better staff planning, not from cheaper buying.
+- **COGS follows staffing decisions, not sales.**
+  - COGS hardly reacts when sales change. Even its one big jump, in May, came mostly from adding summer staff.
+  - The two biggest sales months, January and December, ran on the normal team. The summer increase did not bring more sales than those months and was cut back slowly, adding about \$0.35M of labour cost from May to December.
+- **Fixed overheads are growing faster than the business.**
+  - Rent and equipment costs went up during a year when second-half sales fell. If they stay at December's level, they will cost about \$0.65M a year more than at the start of 2023.
+  - Marketing is the only cost that rises and falls with the season. It follows sales, but there is no proof yet that it creates extra sales.
+- **Data note:** the COGS Pareto leaves out "Other" COGS, so Labor's share looks bigger than it is (66.9%, not 69.7%).
 
 ## 5. Final Conclusion & Recommendation
 
-2023 was profitable (24.6% net margin), but the profit is not stable:
-
-- It depends on two business lines, Sportswear and Sports equipment, while Nutrition & Food Supplements loses money.
-- Most costs are fixed, so a drop in sales leads to a much bigger drop in profit.
-- Fixed costs (rent, equipment, summer staff) kept rising while H2 revenue fell.
+2023 was profitable, but the profit is fragile. It rests on two business lines, and a mostly fixed cost base turns every drop in sales into a much bigger drop in profit.
 
 | Aspect | Insight | Recommendation |
 |---|---|---|
-| **Profit sensitivity** | Each \$1 of lost revenue cut profit by about 64¢. From January to September, revenue fell 42% and net profit fell 87%. The estimated break-even point is about \$0.9M of revenue per month. | Check the break-even point every month. Plan the 2024 budget with a "bad month" scenario (like September) and decide in advance which costs to cut. |
-| **Nutrition & Food Supplements** | Lost \$0.71M and made a loss in 11 of 12 months. Opex is 75.7% of its revenue. The loss comes from R&D and from equipment, rent and interest costs that may be shared with other lines. | Find out which costs would really go away if the line closed, and set a deadline for R&D to show results. Limit R&D and marketing to a fixed % of revenue and give the line 2 quarters to improve. If it does not improve and the costs can be removed, cut the product range or close the line. |
-| **Sportswear** | Brings 63.4% of profit from 38.8% of revenue, with the best margins (40.2% net) and no loss-making month. | Give it priority for the growth budget and for stock in busy seasons. Grow with tested campaigns instead of discounts that would lower its margin. |
-| **Sports equipment** | Makes half of revenue, but its gross margin is 11.6 pp lower than Sportswear's because of labour (+6.9 pp) and selling costs (+2.4 pp), not materials. It made a loss in September. | Review staff productivity and work schedules. Check what the "Sales" cost line pays for, and link sales commissions to profit instead of sales volume. |
-| **Labour & staffing** | Labor + Payroll are 51% of costs. Labour was increased 24% for the summer and reduced slowly, while the January and December peaks used the normal team. | Use temporary or contract staff for busy months and end their contracts when demand drops. Track revenue per \$1 of labour every month for each line. |
-| **Fixed costs** | Rent rose 48% and equipment 33% in 2023, and Opex was highest in December. H2 costs fell only 3% while revenue fell 13%. | Do not add new fixed costs in 2024 unless there is a clear plan for how they will pay off. Check whether all equipment and space are really being used. |
-| **Revenue planning & marketing** | Sales are highest in January, May–June and December. Much of the H2 drop came from consulting (−39%). Marketing spending follows the season, so it is unclear whether it brings extra sales. | Plan product sales around the seasons, and plan consulting income from signed contracts. Add data from previous years, and test marketing in small trials before increasing the budget. |
-| **Dashboard & data quality** | The Pareto chart misses \$0.26M of "Other" COGS, margin MoM is shown as % instead of pp, the NP Margin card has the wrong label, and two records look like typos (\$130K and \$90K). | Create a separate "Other COGS" account, check the two records with the accounting team, show margin changes in pp and fix the card label. Next, add COGS and Opex as % of revenue, revenue by type (products, consulting, other income), a year-over-year comparison and budget vs actual. |
+| **Cost flexibility** | Most costs are fixed, so a 10% fall in sales would wipe out about a quarter of profit. The H2 slowdown came mostly from fewer consulting contracts. | Make part of the cost base flexible: seasonal staff, and shorter contracts for rent and equipment. Cut non-essential spending in the same month when sales miss target. Sign longer consulting contracts to keep H2 revenue steady. |
+| **Sportswear** | The most profitable line per dollar sold, and profitable every month. | Give it first claim on the growth budget and on stock before peak months. Keep prices firm and avoid deep discounts. |
+| **Sports equipment** | Brings the most sales, but loses margin on labour and selling costs, and is hit hardest in slow months. | Improve staff scheduling, charge for delivery and installation on large orders, and pay sales commissions on profit instead of sales volume. |
+| **Nutrition & Food Supplements** | Loses money almost every month because its overheads are 1.7 times its gross profit. Closing it is not an automatic +\$0.71M. | Run a 2-quarter recovery plan: bring Opex down to below its gross margin (about 45% of revenue), and focus R&D and marketing on proven products. If the plan fails, narrow the range, use an outside manufacturer, or close the line after checking which costs would really go away. |
+| **Staffing** | The summer staff increase did not bring more sales and was cut back slowly, adding about \$0.35M of cost. | Keep a core team sized for normal months, hire seasonal or contract staff for peaks, and end their contracts when the peak is over. |
+| **Rent & equipment** | Rent and equipment costs rose while H2 sales fell. At December's level they cost about \$0.65M a year more than at the start of 2023. | Freeze new rent and equipment spending unless it clearly pays off. Renegotiate rent, sublet unused space, lease instead of buying, and share equipment across the three lines. |
