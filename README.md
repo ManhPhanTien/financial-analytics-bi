@@ -4,19 +4,19 @@
 
 ### 1.1. What is this project about?
 
-This project builds a 3-page Power BI dashboard from the 2023 profit and loss (P&L) data of a sports company with three business lines: Sportswear, Sports equipment, and Nutrition & Food Supplements. The raw data is a simple table of 580 monthly P&L records. The dashboard turns it into one clear P&L view, from revenue down to net profit, by month and by business line. Users can also look deeper into the costs behind the margins.
+This project builds a 3-page Power BI dashboard from the 2023 profit and loss (P&L) data of a sports company. The company has three business lines: Sportswear, Sports equipment, and Nutrition & Food Supplements. The raw data is a simple table of 580 monthly P&L records. The dashboard turns it into one clear P&L view, from revenue down to net profit, by month and by business line. Users can also look deeper into the costs behind the profit margins.
 
 The work followed three steps:
 
-1. Brainstorm with the Design Thinking canvas (Excel) before working with the data: who will use the dashboard, what they need, which questions it must answer and which charts belong on each page.
+1. Brainstorm with the Design Thinking canvas (Excel) before working with the data: who will use the dashboard, what they need, which questions it must answer, and which charts belong on each page.
 2. Build the dashboard in Power BI based on that plan.
 3. Analyse the dashboard and turn the findings into recommendations.
 
 ### 1.2. Who is this project for?
 
-- **CFO / Finance Director (main user):** responsible for the P&L and the 2024 budget, and needs one place to see profit, margin trends and the main costs.
+- **CFO / Finance Director (main user):** responsible for the P&L and the 2024 budget. Needs one place to see profit, margin trends and the main costs.
 - **CEO / Board:** decides which business line to grow, fix or close.
-- **Heads of the three business lines:** responsible for their own revenue and cost targets, and want to compare their line with the others.
+- **Heads of the three business lines:** responsible for their own revenue and cost targets. Want to compare their line with the others.
 - **FP&A / cost controllers:** compare each month's results with the plan.
 
 ### 1.3. Business Questions
@@ -34,10 +34,10 @@ The work followed three steps:
   - Cost: why?
 - **Answers to the four questions:**
   1. 2023 was profitable: \$17.56M revenue, \$4.31M net profit, a 24.6% net margin.
-  2. Profit depends heavily on sales. In the weakest month, September, the net margin was only 8.2%, compared with 35.6% in January.
+  2. Profit depends a lot on sales. In the weakest month, September, the net margin was only 8.2%, compared with 35.6% in January.
   3. Sportswear earns 63% of group profit from 39% of revenue. Nutrition & Food Supplements lost \$0.71M.
   4. People costs (Labor + Payroll) are half of all costs, and most costs barely go down when revenue falls.
- 
+
 ## 2. Design Thinking Process
 
 The canvas was filled in before the dashboard was built. It only shows what was known at that time: the users, their needs, the structure of the raw data, the questions to answer, and the planned pages and metrics. The results come later, in sections 4 and 5.
@@ -99,7 +99,7 @@ The metrics planned for each page, from the main KPIs (Layer 0) to more detailed
 
 ## 3. Data Modeling
 
-The raw CSV files were loaded into Power BI, cleaned in Power Query and organised as a star schema (one fact table linked to several dimension tables).
+The raw CSV files were loaded into Power BI, cleaned in Power Query and set up as a star schema (one fact table linked to several dimension tables).
 
 ![Data Model](images/04_data_model.png)
 
@@ -111,57 +111,57 @@ All figures are for 2023, in USD, as recorded in the source data.
 
 ![Overview](images/01_overview.png)
 
-- **The company is profitable, but its profit depends heavily on keeping sales high.**
-  - Overheads (Opex) are almost as large as the cost of the products (COGS). For a company that sells physical goods this is unusual. It means a large part of the costs (staff, equipment, rent) must be paid every month, whatever the sales.
-  - As a result, a 10% fall in sales would wipe out roughly a quarter of the year's profit.
+- **The company is profitable, but its profit depends a lot on keeping sales high.**
+  - Running costs (Opex) are almost as big as the cost of the products (COGS). For a company that sells physical goods, this is unusual. It means many costs (staff, equipment, rent) must be paid every month, even when sales are low.
+  - So if sales fall by 10%, the company would lose roughly a quarter of its yearly profit.
 - **Weak months are a cost problem, not only a sales problem.**
-  - When sales fell, costs stayed almost the same. From January to September, about 73¢ of every lost sales dollar came straight out of profit; from August to September, almost all of it did.
-  - October's +222% jump in profit was only a bounce back to August's level, not a real recovery.
-- **The second-half slowdown came mostly from consulting, not from sports products.**
-  - Product sales follow the usual sporting-goods calendar (New Year fitness, summer, holiday gifts) and fell only slightly in the second half.
-  - Consulting is only about 16% of revenue but caused more than half of the H2 drop. It depends on winning contracts, so it behaves very differently from product sales.
+  - When sales fell, costs stayed almost the same. From January to September, about 73¢ of every lost sales dollar came straight out of profit. From August to September, almost all of it did.
+  - In October, profit went up by 222%, but this only brought it back to August's level. It was not a real recovery.
+- **The slowdown in the second half of the year came mostly from consulting, not from sports products.**
+  - Product sales follow the usual calendar for sporting goods (New Year fitness, summer, holiday gifts). They fell only a little in the second half.
+  - Consulting is only about 16% of revenue, but it caused more than half of the drop in the second half (H2). Consulting depends on winning contracts, so it behaves very differently from product sales.
 
 ### 4.2. Line: Where is the problem?
 
 ![Line](images/02_business_line.png)
 
 - **Sportswear is the safest place to grow.**
-  - Each dollar of Sportswear sales brings about 1.5 times the profit of a dollar of Sports equipment sales. The line made a profit every month, and its profit even rose in September, when the group's profit fell.
-  - Clothing brands can usually charge higher prices, and Sportswear also needs less labour for each dollar it sells.
-- **Sports equipment brings the most sales, but loses margin on labour and selling costs, not on materials.**
-  - Equipment is bulky and often sold to gyms, schools and clubs, which adds handling, delivery and installation work. Materials cost the same share as in Sportswear, so buying more cheaply would not close the gap.
-  - It is also the line hit hardest in slow months. Its summer staff were only partly cut back, and that extra cost was enough to push September into its only loss.
-- **Nutrition & Food Supplements has an overhead problem, not a product problem.**
-  - Its products make money before overheads, but its overheads (mainly payroll, R&D and marketing) are about 1.7 times its gross profit. It loses money almost every month, and its loss takes away about one-seventh of what the other two lines earn.
-  - It looks like a young brand still spending to grow, but its sales did not grow in the second half.
+  - Each dollar of Sportswear sales makes about 1.5 times more profit than a dollar of Sports equipment sales. The line made a profit every month. Its profit even went up in September, when the group's profit went down.
+  - Clothing brands can usually set higher prices. Sportswear also needs less labour for each dollar it sells.
+- **Sports equipment brings in the most sales, but it keeps less profit because of labour and selling costs, not because of materials.**
+  - Equipment is big and heavy, and is often sold to gyms, schools and clubs. This adds work for moving, delivery and setting up. Materials cost the same share as in Sportswear, so buying materials more cheaply would not close the gap.
+  - It is also the line hit hardest in slow months. Its extra summer staff were only partly reduced afterwards, and this extra cost was enough to push September into its only loss.
+- **Nutrition & Food Supplements has a running-cost problem, not a product problem.**
+  - Its products make money before running costs are counted. But its running costs (mainly payroll, R&D and marketing) are about 1.7 times its gross profit. It loses money almost every month. Its loss takes away about one-seventh of what the other two lines earn.
+  - It looks like a young brand that is still spending to grow. But its sales did not grow in the second half.
 - **Closing Nutrition would not automatically add \$0.71M to profit.**
-  - Its sales cover its own direct costs. The loss comes from R&D and from equipment, rent and interest costs that may be shared with the other lines and would stay after closing.
-  - Depending on which costs really disappear, closing it would change group profit by anywhere from −\$0.10M to +\$0.71M.
+  - Its sales cover its own direct costs. The loss comes from R&D, and from equipment, rent and interest costs that may be shared with the other lines. These costs could stay after closing.
+  - Depending on which costs really go away, closing it would change group profit by anywhere from −\$0.10M to +\$0.71M.
 
 ### 4.3. Cost: Why?
 
 ![Cost](images/03_cost.png)
 
 - **Labour, not materials, decides the margin.**
-  - People costs (Labor + Payroll) are about half of all costs, while materials are a small share. Saving 10% on labour is worth about four times as much as saving 10% on materials.
+  - People costs (Labor + Payroll) are about half of all costs. Materials are a small share. Saving 10% on labour is worth about four times as much as saving 10% on materials.
   - So the biggest savings will come from better staff planning, not from cheaper buying.
 - **COGS follows staffing decisions, not sales.**
-  - COGS hardly reacts when sales change. Even its one big jump, in May, came mostly from adding summer staff.
-  - The two biggest sales months, January and December, ran on the normal team. The summer increase did not bring more sales than those months and was cut back slowly, adding about \$0.35M of labour cost from May to December.
-- **Fixed overheads are growing faster than the business.**
-  - Rent and equipment costs went up during a year when second-half sales fell. If they stay at December's level, they will cost about \$0.65M a year more than at the start of 2023.
-  - Marketing is the only cost that rises and falls with the season. It follows sales, but there is no proof yet that it creates extra sales.
-- **Data note:** the COGS Pareto leaves out "Other" COGS, so Labor's share looks bigger than it is (66.9%, not 69.7%).
+  - COGS hardly changes when sales change. Even its one big jump, in May, came mostly from adding summer staff.
+  - The two biggest sales months, January and December, ran with the normal team. The summer increase did not bring more sales than those months, and it was reduced slowly. This added about \$0.35M of labour cost from May to December.
+- **Fixed running costs are growing faster than the business.**
+  - Rent and equipment costs went up in a year when sales fell in the second half. If they stay at December's level, they will cost about \$0.65M a year more than at the start of 2023.
+  - Marketing is the only cost that goes up and down with the season. It follows sales, but there is no proof yet that it creates extra sales.
+- **Data note:** the COGS Pareto chart does not include "Other" COGS. So Labor looks bigger than it really is: the chart shows 69.7%, but the true share is 66.9%.
 
 ## 5. Final Conclusion & Recommendation
 
-2023 was profitable, but the profit is fragile. It rests on two business lines, and a mostly fixed cost base turns every drop in sales into a much bigger drop in profit.
+2023 was profitable, but the profit is not safe. It depends on two business lines. Most costs are fixed, so any fall in sales causes a much bigger fall in profit.
 
 | Aspect | Insight | Recommendation |
 |---|---|---|
-| **Cost flexibility** | Most costs are fixed, so a 10% fall in sales would wipe out about a quarter of profit. The H2 slowdown came mostly from fewer consulting contracts. | Make part of the cost base flexible: seasonal staff, and shorter contracts for rent and equipment. Cut non-essential spending in the same month when sales miss target. Sign longer consulting contracts to keep H2 revenue steady. |
-| **Sportswear** | The most profitable line per dollar sold, and profitable every month. | Give it first claim on the growth budget and on stock before peak months. Keep prices firm and avoid deep discounts. |
-| **Sports equipment** | Brings the most sales, but loses margin on labour and selling costs, and is hit hardest in slow months. | Improve staff scheduling, charge for delivery and installation on large orders, and pay sales commissions on profit instead of sales volume. |
-| **Nutrition & Food Supplements** | Loses money almost every month because its overheads are 1.7 times its gross profit. Closing it is not an automatic +\$0.71M. | Run a 2-quarter recovery plan: bring Opex down to below its gross margin (about 45% of revenue), and focus R&D and marketing on proven products. If the plan fails, narrow the range, use an outside manufacturer, or close the line after checking which costs would really go away. |
-| **Staffing** | The summer staff increase did not bring more sales and was cut back slowly, adding about \$0.35M of cost. | Keep a core team sized for normal months, hire seasonal or contract staff for peaks, and end their contracts when the peak is over. |
-| **Rent & equipment** | Rent and equipment costs rose while H2 sales fell. At December's level they cost about \$0.65M a year more than at the start of 2023. | Freeze new rent and equipment spending unless it clearly pays off. Renegotiate rent, sublet unused space, lease instead of buying, and share equipment across the three lines. |
+| **Cost flexibility** | Most costs are fixed, so a 10% fall in sales would remove about a quarter of profit. The slowdown in the second half came mostly from fewer consulting contracts. | Make part of the costs move with sales: use seasonal staff, and sign shorter contracts for rent and equipment. When sales miss the target, cut non-essential spending in the same month. Sign longer consulting contracts to keep second-half revenue steady. |
+| **Sportswear** | The most profitable line per dollar sold, and profitable every month. | Give it first priority for the growth budget and for stock before busy months. Keep prices firm and avoid big discounts. |
+| **Sports equipment** | Brings in the most sales, but keeps less profit because of labour and selling costs. It is hit hardest in slow months. | Plan staff schedules better. Charge for delivery and setting up on large orders. Pay sales staff a bonus based on profit, not on sales volume. |
+| **Nutrition & Food Supplements** | Loses money almost every month because its running costs are 1.7 times its gross profit. Closing it will not automatically add \$0.71M. | Run a 2-quarter recovery plan: bring Opex down to below its gross margin (about 45% of revenue), and focus R&D and marketing on products that have proven they sell. If the plan fails, sell fewer products, use an outside company to make them, or close the line after checking which costs would really go away. |
+| **Staffing** | The extra summer staff did not bring more sales and were reduced slowly, which added about \$0.35M of cost. | Keep a core team sized for normal months. Hire seasonal or contract staff for busy periods, and end their contracts when the busy period is over. |
+| **Rent & equipment** | Rent and equipment costs went up while second-half sales fell. At December's level they cost about \$0.65M a year more than at the start of 2023. | Do not add new rent or equipment spending unless it clearly pays off. Renegotiate rent, rent out space you do not use, lease equipment instead of buying, and share equipment across the three lines. |
