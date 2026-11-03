@@ -151,7 +151,6 @@ All figures are for 2023, in USD, as recorded in the source data.
 - **Fixed running costs are growing faster than the business.**
   - Rent and equipment costs went up in a year when sales fell in the second half. If they stay at December's level, they will cost about \$0.65M a year more than at the start of 2023.
   - Marketing is the only cost that goes up and down with the season. It follows sales, but there is no proof yet that it creates extra sales.
-- **Data note:** the COGS Pareto chart does not include "Other" COGS. So Labor looks bigger than it really is: the chart shows 69.7%, but the true share is 66.9%.
 
 ## 5. Final Conclusion & Recommendation
 
